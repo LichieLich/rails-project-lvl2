@@ -2,6 +2,7 @@ ci-setup:
 	# cp -n .env.example .env || true
 	yarn install
 	bundle install --without production development
+	chmod u+x bin/rails
 	RAILS_ENV=test bin/rails db:prepare
 	# bin/rails db:fixtures:load
 
