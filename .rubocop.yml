@@ -26,6 +26,9 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 
+Rails/FilePath:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
