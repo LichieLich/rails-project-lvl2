@@ -12,6 +12,9 @@ lint-code:
 lint-slim:
 	bundle exec slim-lint app/views/
 
+start:
+	bin/rails s
+
 test:
 	bin/rails test
 
