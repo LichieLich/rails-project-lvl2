@@ -19,6 +19,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Used for authorisation
 gem 'devise'
+# Slim makes functional html templates for views
+gem 'slim-rails', '~> 3.3.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
