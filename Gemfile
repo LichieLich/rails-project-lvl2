@@ -19,8 +19,12 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Used for authorisation
 gem 'devise'
+# Simple form makes more form creation mre simple
+gem 'simple_form'
 # Slim makes functional html templates for views
 gem 'slim-rails', '~> 3.3.0'
+# Faker generates data for testing
+gem 'faker'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

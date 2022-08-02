@@ -6,3 +6,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Categories
+5.times do
+  Category.create name: Faker::Beer.brand
+end
+
+# Users
+5.times do
+  user = User.new
+  user.email = Faker::Internet.email
+  user.password = 'valid_password'
+  user.password_confirmation = 'valid_password'
+  user.save
+end
+
+# Posts
+5.times do
+  Post.create title: Faker::BossaNova.artist, creator: User.all.sample.email, category: Category.all.sample
+end

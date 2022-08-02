@@ -1,4 +1,18 @@
 h1
   | Home#:index
-p
-  | Find me in app/views/home/:index.html.erb
+.container
+  - @posts.each do |post|
+    p Title: #{post.title}
+    p Category: #{post.category.name}
+    p Creator: #{post.creator}
+    p = post.body
+    - if post.creator == current_user.email
+      = link_to 'Edit', edit_post_path(post)
+      br
+      = link_to 'Delete', post_path(post), data: { confirm: 'Are you sure?' }, method: :delete
+    br
+    = link_to 'Open', post_path(post)
+    br
+    br
+
+= link_to 'New post', new_post_path

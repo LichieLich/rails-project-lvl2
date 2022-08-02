@@ -6,6 +6,12 @@ ci-setup:
  	bin/rails db:prepare
 	# bin/rails db:fixtures:load
 
+setup:
+	# cp -n .env.example .env || true
+	bin/setup
+	bin/rails db:fixtures:load
+	npx simple-git-hooks
+
 lint-code:
 	bundle exec rubocop
 
