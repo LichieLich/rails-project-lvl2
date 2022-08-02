@@ -88,6 +88,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.10.0)
+    faker (2.22.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -205,6 +207,9 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    simple_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -265,6 +270,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  faker
   jbuilder (~> 2.7)
   listen (~> 3.3)
   minitest-power_assert
@@ -276,6 +282,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
+  simple_form
   slim-rails (~> 3.3.0)
   slim_lint
   spring

@@ -1,18 +1,17 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.container
+  h2
+    | Log in
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.error_notification
+    .form-group
+      .d-flex.flex-column.justify-content-center
+        .mb-3
+          = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'col-3' },
+          label_html: { class: 'col-sm-1 col-form-label' }, wrapper_html: { class: 'form-control' }
+        .mb-3
+          = f.input :password, required: true,
+            input_html: { autocomplete: 'current-password', class: 'col-3' },
+            label_html: { class: 'col-sm-1 col-form-label' }, wrapper_html: { class: 'form-control' }
+    .form-actions.mb-3
+      = f.button :submit, 'Log in', class: 'btn btn-primary'
+  = render "devise/shared/links"
