@@ -1,7 +1,8 @@
-h1 Editing post
+.container
+  h1 Editing post
 
-== render 'form'
+  == render 'form'
 
-=> link_to 'Show', @post
-'|
-=< link_to 'Back', root_path
+  => link_to 'Show', @post, class: 'm-2'
+  '|
+  =< link_to 'Back', @post, class: 'm-2'
