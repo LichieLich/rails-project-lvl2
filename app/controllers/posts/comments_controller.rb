@@ -11,11 +11,23 @@ class Posts::CommentsController < ApplicationController
     @post_comment = find_post.post_comments.build
   end
 
+  def new_reply
+    set_post_comment
+    @post_comment = @post_comment.children.new
+    @post_comment.post_id = params[:post_id]
+  end
+
   def edit
   end
 
   def create
-    @post_comment = find_post.post_comments.build(post_comment_params)
+    if post_comment_params['ancestry']
+      ancestor_comment = PostComment.find(post_comment_params['ancestry'])
+      @post_comment = ancestor_comment.children.create(post_comment_params)
+      @post_comment.post_id = ancestor_comment.post_id
+    else
+      @post_comment = find_post.post_comments.build(post_comment_params)
+    end
 
     respond_to do |format|
       if @post_comment.save
@@ -58,7 +70,7 @@ class Posts::CommentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_comment_params
-    params.require(:post_comment).permit(:content, :post_id)
+    params.require(:post_comment).permit(:content, :post_id, :ancestry)
   end
 
   def find_post

@@ -1,0 +1,8 @@
+.container
+  = content_for :content do
+    = 'New reply'
+
+  == render 'form'
+  hr
+  .d-flex
+    = link_to 'Back', :back, class: 'btn btn-outline-primary'

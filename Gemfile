@@ -25,6 +25,8 @@ gem 'simple_form'
 gem 'slim-rails', '~> 3.3.0'
 # Faker generates data for testing
 gem 'faker'
+# Used for creating tree organization of objects
+gem 'ancestry'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

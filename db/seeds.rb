@@ -34,3 +34,10 @@ posts = Post.all
   post = posts.sample
   post.post_comments.build(content: Faker::ChuckNorris.fact).save
 end
+
+# Comments' replys
+25.times do
+  comments = PostComment.all
+  ancestor = comments.sample
+  reply = ancestor.children.create(content: Faker::ChuckNorris.fact, post_id: ancestor.post_id)
+end
