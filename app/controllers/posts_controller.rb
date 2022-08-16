@@ -9,7 +9,9 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    @post_comments = @post.post_comments
+  end
 
   # GET /posts/new
   def new

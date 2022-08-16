@@ -1,0 +1,10 @@
+.container
+  = simple_form_for @post_comment do |f|
+    - if @post_comment.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@post_comment.errors.count, 'error')} prohibited this post from being saved:"
+        ul
+          - @post_comment.errors.full_messages.each do |message|
+            li = message
+    = f.input :content, as: :text
+    = f.button :submit, class: 'btn btn-primary mt-2'

@@ -27,3 +27,10 @@ end
   body = Faker::Lorem.paragraph(sentence_count: rand(25)) if rand(2).positive?
   Post.create title: Faker::BossaNova.artist, creator: User.all.sample.email, category: Category.all.sample, body: body
 end
+
+# Comments
+posts = Post.all
+10.times do
+  post = posts.sample
+  post.post_comments.build(content: Faker::ChuckNorris.fact).save
+end

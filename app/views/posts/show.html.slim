@@ -8,6 +8,12 @@
           - if @post.body
             p.bg-light.mb-2 = @post.body
           / div.d-flex.flex-sm-row.justify-content-between.w-25
+          - if @post_comments
+            - @post_comments.each do |comment|
+              p = comment.content
+              = link_to 'Edit comment', edit_post_comment_path(@post, comment)
+              = link_to 'Delete comment', post_comment_path(@post, comment), data: { confirm: 'Are you sure?' }, method: :delete
+          = link_to 'Leave a comment!', new_post_comment_path(@post)
           .d-flex.flex-sm-row
             - if @post.creator == current_user.email
               = link_to 'Edit', edit_post_path(@post), class: 'me-2'
