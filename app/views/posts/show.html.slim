@@ -13,7 +13,7 @@
                 .border.border-dark.rounded
                   == render partial: 'posts/comments/comment', object: comment
                 br
-          = button_to 'Leave a comment!', new_post_comment_path(@post), class: 'btn btn-primary'
+          = link_to 'Leave a comment!', new_post_comment_path(@post), class: 'btn btn-primary'
           .d-flex.flex-sm-row
             - if @post.creator == current_user.email
               = link_to 'Edit', edit_post_path(@post), class: 'me-2'
