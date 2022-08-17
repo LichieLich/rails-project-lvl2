@@ -27,6 +27,7 @@ class PostsController < ApplicationController
     @post.creator = current_user.email
 
     respond_to do |format|
+      p params
       if @post.save
         format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }

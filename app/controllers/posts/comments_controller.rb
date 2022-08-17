@@ -17,8 +17,8 @@ class Posts::CommentsController < ApplicationController
     @post_comment.post_id = params[:post_id]
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def create
     if post_comment_params['ancestry']
@@ -30,6 +30,7 @@ class Posts::CommentsController < ApplicationController
     end
 
     respond_to do |format|
+      p params
       if @post_comment.save
         format.html { redirect_to post_url(find_post), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: find_post }
@@ -40,26 +41,26 @@ class Posts::CommentsController < ApplicationController
     end
   end
 
-  def update
-    respond_to do |format|
-      if @post_comment.update(post_comment_params)
-        format.html { redirect_to post_url(find_post), notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: find_post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post_comment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @post_comment.update(post_comment_params)
+  #       format.html { redirect_to post_url(find_post), notice: 'Comment was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: find_post }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @post_comment.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  def destroy
-    @post_comment.destroy
+  # def destroy
+  #   @post_comment.destroy
 
-    respond_to do |format|
-      format.html { redirect_to post_url(find_post), notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to post_url(find_post), notice: 'Comment was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 

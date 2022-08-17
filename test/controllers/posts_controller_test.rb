@@ -15,17 +15,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
-    # Работает
-    post = Post.new body: @post.body, creator: @user.email, title: @post.title, category: @post.category
-    post.save # => true
-
-    # Не рабоатет. Количество постов не увеличивается, так как не передаётся категория в параметры запроса
     assert_difference('Post.count') do
-      p @post.valid?
-      p @post.errors
-      # Как должно бы работать
-      # post posts_url, params: { post: { body: @post.body, creator: @user.email, title: @post.title, category: @post.category } }
-      # Как работает в итоге
       post posts_url, params: { post: { body: @post.body, creator: @user.email, title: @post.title, category_id: @post.category.id } }
     end
 
@@ -44,7 +34,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update post' do
     new_post = posts(:two)
-    # patch post_url(@post), params: { post: { body: @post.body, creator: "sdadasd", title: @post.title, category: @post.category } }
     patch post_url(@post), params: { post: { body: new_post.body, creator: new_post.creator, title: new_post.title, category_id: new_post.category.id } }
     assert_redirected_to post_url(@post)
 
