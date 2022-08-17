@@ -1,0 +1,15 @@
+container
+  .d-flex.flex-row
+    - if comment.ancestry
+      .p-4
+    .p-2
+      p.mb-0 = comment.content
+      / span = "#{comment.ancestry}/#{comment.id}"
+        / = link_to 'Edit comment', edit_post_comment_path(@post, comment)
+        / = link_to 'Delete comment', post_comment_path(@post, comment), data: { confirm: 'Are you sure?' }, method: :delete
+      = link_to 'Add reply', post_comment_path(@post, comment), method: :get, class: 'me-2 text-secondary'
+      br
+      - if comment.has_children?
+        - comment.child_ids.each do |id|
+          - comment = PostComment.find(id)
+          == render partial: 'posts/comments/comment', object: comment

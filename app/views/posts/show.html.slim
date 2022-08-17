@@ -9,13 +9,11 @@
             p.bg-light.mb-2 = @post.body
           - if @post_comments
             - @post_comments.each do |comment|
-              p = comment.content
-              / Ancestry is for debugging
-              span = comment.ancestry
-              = link_to 'Edit comment', edit_post_comment_path(@post, comment)
-              = link_to 'Delete comment', post_comment_path(@post, comment), data: { confirm: 'Are you sure?' }, method: :delete
-              = link_to 'Add reply', post_comment_path(@post, comment), method: :get
-          = link_to 'Leave a comment!', new_post_comment_path(@post)
+              - unless comment.ancestry
+                .border.border-dark.rounded
+                  == render partial: 'posts/comments/comment', object: comment
+                br
+          = button_to 'Leave a comment!', new_post_comment_path(@post), class: 'btn btn-primary'
           .d-flex.flex-sm-row
             - if @post.creator == current_user.email
               = link_to 'Edit', edit_post_path(@post), class: 'me-2'
