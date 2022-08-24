@@ -39,5 +39,14 @@ end
 25.times do
   comments = PostComment.all
   ancestor = comments.sample
-  reply = ancestor.children.create(content: Faker::ChuckNorris.fact, post_id: ancestor.post_id)
+  ancestor.children.create(content: Faker::ChuckNorris.fact, post_id: ancestor.post_id)
+end
+
+# Likes
+posts = Post.all
+users = User.all
+posts.each do |post|
+  users.each do |user|
+    post.post_likes.build(post_id: post.id, user_id: user.id).save if rand(100) > 75
+  end
 end

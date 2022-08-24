@@ -11,6 +11,11 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post_comments = @post.post_comments
+    users_liked = PostLike.where(post_id: @post.id).each_with_object([]) do |like, array|
+      array << User.find(like.user_id).email[/\w+/]
+    end
+
+    @likes = users_liked.join(', ')
   end
 
   # GET /posts/new
@@ -27,7 +32,6 @@ class PostsController < ApplicationController
     @post.creator = current_user.email
 
     respond_to do |format|
-      p params
       if @post.save
         format.html { redirect_to post_url(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }

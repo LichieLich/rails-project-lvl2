@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class PostCommentTest < ActiveSupport::TestCase
+class LikesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

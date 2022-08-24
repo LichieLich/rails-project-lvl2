@@ -12,7 +12,14 @@
             p.mb-2 Creator: #{post.creator}
             - if post.body
               p.bg-light.mb-2 = post.body
-            / div.d-flex.flex-sm-row.justify-content-between.w-25
+            .text-muted
+              small Liked: 
+              - if post.post_likes.empty?
+                small No one =(
+              - else
+                - likes = post.post_likes.each_with_object([]) do |like, array|
+                  - array << User.find(like.user_id).email[/\w+/]
+                small = likes.join(', ')
             .d-flex.flex-sm-row
               = link_to 'Open', post_path(post), class: 'me-2'
               - if post.creator == current_user.email

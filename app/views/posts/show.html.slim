@@ -2,18 +2,24 @@
   .d-flex.flex-column
       .border.rounded
         .p-2
-          p Title: #{@post.title}
-          p Category: #{@post.category.name}
-          p.mb-2 Creator: #{@post.creator}
+          h4 = @post.title
+          p.fw-bold.mb-0 Category: #{@post.category.name}
+          p.mb-2 By: #{@post.creator}
           - if @post.body
-            p.bg-light.mb-2 = @post.body
+            p.bg-light.mb-2.mt-2 = @post.body
+          == render partial: 'posts/likes/like'
+          br
+          small.text-muted Liked: #{@likes.empty? ? 'No one =(' : @likes}
+          br
+          br
+          span Comments:
           - if @post_comments
             - @post_comments.each do |comment|
               - unless comment.ancestry
-                .border.border-dark.rounded
+                .border.border-dark.rounded.mt-2
                   == render partial: 'posts/comments/comment', object: comment
                 br
-          = link_to 'Leave a comment!', new_post_comment_path(@post), class: 'btn btn-primary'
+          = link_to 'Leave a comment!', new_post_comment_path(@post), class: 'btn btn-primary mb-2'
           .d-flex.flex-sm-row
             - if @post.creator == current_user.email
               = link_to 'Edit', edit_post_path(@post), class: 'me-2'

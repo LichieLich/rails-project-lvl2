@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 class Posts::CommentsController < ApplicationController
   # before_action :resource_post, only: %i[ create new ]
-  before_action :set_post_comment, only: %i[ edit update destroy ]
-
+  before_action :set_post_comment, only: %i[new_reply]
 
   def index
     @post_comments = PostComment.all
@@ -30,7 +31,6 @@ class Posts::CommentsController < ApplicationController
     end
 
     respond_to do |format|
-      p params
       if @post_comment.save
         format.html { redirect_to post_url(find_post), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: find_post }
