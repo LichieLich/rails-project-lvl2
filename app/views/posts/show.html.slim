@@ -13,12 +13,11 @@
           br
           br
           span Comments:
-          - if @post_comments
-            - @post_comments.each do |comment|
-              - unless comment.ancestry
-                .border.border-dark.rounded.mt-2
-                  == render partial: 'posts/comments/comment', object: comment
-                br
+          - @post_comments&.each do |comment|
+            - unless comment.ancestry
+              .border.border-dark.rounded.mt-2
+                == render partial: 'posts/comments/comment', object: comment
+              br
           = link_to 'Leave a comment!', new_post_comment_path(@post), class: 'btn btn-primary mb-2'
           .d-flex.flex-sm-row
             - if @post.creator == current_user.email

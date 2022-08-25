@@ -10,7 +10,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  test 'should get new' do
+  test 'should get new comment' do
     get new_post_comment_url(@comment.post_id)
     assert_response :success
   end
@@ -32,7 +32,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @reply = post_comments(:two)
     @reply.ancestry = @comment.id
     assert_difference('PostComment.count') do
-      post post_comments_url(@comment.post_id, @comment), params: { post_comment: { ancestry: @reply.ancestry, post_id: @reply.post_id, content: @reply.content } }
+      post post_comments_url(@comment.post_id, @comment.ancestry), params: { post_comment: { ancestry: @reply.ancestry, post_id: @reply.post_id, content: @reply.content } }
     end
 
     assert_redirected_to post_url(Post.find(@comment.post_id))
