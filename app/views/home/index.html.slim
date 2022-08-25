@@ -16,7 +16,7 @@
             - @post = post
             == render partial: 'posts/likes/like'
             .text-muted
-              small 'Liked: '
+              small = 'Liked: '
               - if post.post_likes.empty?
                 small No one =(
               - else
