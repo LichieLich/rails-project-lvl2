@@ -1,6 +1,5 @@
 .container
-  h2
-    | Log in
+  h2 = t('login.title')
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     = f.error_notification
     .form-group
@@ -13,5 +12,5 @@
             input_html: { autocomplete: 'current-password', class: 'col-3' },
             label_html: { class: 'col-sm-1 col-form-label' }, wrapper_html: { class: 'form-control' }
     .form-actions.mb-3
-      = f.button :submit, 'Log in', class: 'btn btn-primary'
+      = f.button :submit, t('login.submit_button'), class: 'btn btn-primary'
   = render 'devise/shared/links'

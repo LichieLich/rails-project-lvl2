@@ -29,7 +29,7 @@ class Posts::CommentsController < ApplicationController
 
     respond_to do |format|
       if @post_comment.save
-        format.html { redirect_to post_url(find_post), notice: 'Comment was successfully created.' }
+        format.html { redirect_to post_url(find_post), notice: t('.success') }
         format.json { render :show, status: :created, location: find_post }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -29,9 +29,6 @@ Metrics/MethodLength:
 Rails/FilePath:
   Enabled: false
 
-Rails/I18nLocaleTexts:
-  Enabled: false
-
 Style/Documentation:
   Enabled: false
 

@@ -1,8 +1,8 @@
 .container
-  h1 Editing post
+  h1 = t('posts.titles.edit')
 
   == render 'form'
 
-  => link_to 'Show', @post, class: 'm-2'
+  => link_to t('posts.links.show'), @post, class: 'm-2'
   '|
-  =< link_to 'Back', @post, class: 'm-2'
+  =< link_to t('posts.links.back'), @post, class: 'm-2'

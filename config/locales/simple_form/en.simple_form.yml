@@ -1,0 +1,19 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'Required'
+      mark: '*'
+    error_notification:
+      default_message: "Please check the problems:"
+    placeholders:
+      post:
+        body: Your post body
+        title: Enter post title
+    prompts:
+      posts:
+        select_category: Select category
+    errors:
+      saving_error: "%{errors} prohibited this post from being saved:"
+

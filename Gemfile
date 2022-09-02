@@ -27,6 +27,7 @@ gem 'slim-rails', '~> 3.3.0'
 gem 'faker'
 # Used for creating tree organization of objects
 gem 'ancestry'
+gem 'rails-i18n'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -48,6 +49,7 @@ group :development, :test do
   # Linter
   gem 'rubocop-rails'
   # Linter for slim views
+  gem 'i18n-debug'
   gem 'slim_lint'
 end
 

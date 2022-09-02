@@ -1,0 +1,37 @@
+en:
+  posts:
+    links:
+      back: Back
+      delete: Delete
+      destroy_confirmation: Are you sure?
+      edit: Edit
+      new_post: New Post
+      show: Open
+    params:
+      author: 'By:'
+      category: 'Category:'
+      liked: 'Liked: '
+      no_likes: No one =(
+      comments: 'Comments:'
+    titles:
+      edit_page: Editing post
+      new: New post
+    destroy:
+      success: Post was successfully deleted
+    create:
+      success: Post was successfully created
+    update:
+      success: Post was successfully updated
+
+    comments:
+      comment_title: New Reply
+      reply_title: New Reply
+      buttons:
+        submit: Send comment
+      links:
+        add_reply: Add reply
+        back: Back
+        destroy_confirmation: Are you sure?
+        new_comment: Leave a comment!
+      create:
+        success: Comment was created.

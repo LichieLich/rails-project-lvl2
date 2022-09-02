@@ -1,0 +1,8 @@
+en:
+  navigation:
+    hello: Hello
+    links:
+      home: Home
+      log_in: Log In
+      log_out: Log Out
+      registration: Registration

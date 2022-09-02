@@ -1,7 +1,6 @@
 .container
-  h1
-    | Welcome to Hexlet blog!
-  h4 All posts for today:
+  h1 = t('home.title')
+  h4 = t('home.all_posts')
   br
   .d-flex.flex-column
       - @posts.each do |post|
@@ -9,24 +8,24 @@
           .p-2
             h4
               = link_to post.title, post_path(post), class: 'link-dark text-decoration-none me-2'
-            p.fw-bold.mb-1 Category: #{post.category.name}
-            p.mb-2 By: #{post.creator[/\w+/]}
+            p.fw-bold.mb-1 #{t('posts.params.category')} #{post.category.name}
+            p.mb-2 #{t('posts.params.author')} #{post.creator[/\w+/]}
             - if post.body
               p.bg-light.mb-2 = post.body
             - @post = post
             == render partial: 'posts/likes/like'
             .text-muted
-              small = 'Liked: '
+              small = t('posts.params.liked')
               - if post.post_likes.empty?
-                small No one =(
+                small = t('posts.params.no_likes')
               - else
                 - likes = post.post_likes.each_with_object([]) do |like, array|
                   - array << User.find(like.user_id).email[/\w+/]
                 small = likes.join(', ')
             .d-flex.flex-sm-row
               - if post.creator == current_user.email
-                = link_to 'Edit', edit_post_path(post), class: 'me-2'
-                = link_to 'Delete', post_path(post), data: { confirm: 'Are you sure?' }, method: :delete, class: 'text-danger'
+                = link_to t('posts.links.edit'), edit_post_path(post), class: 'me-2'
+                = link_to t('posts.links.delete'), post_path(post), data: { confirm: t('posts.links.destroy_confirmation') }, method: :delete, class: 'text-danger'
         br
 
-  = link_to 'New post', new_post_path, class: 'btn btn-primary mb-2'
+  = link_to t('posts.links.new_post'), new_post_path, class: 'btn btn-primary mb-2'

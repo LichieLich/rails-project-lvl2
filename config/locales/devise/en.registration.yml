@@ -1,0 +1,5 @@
+en:
+  registration:
+    password_hint: Must be at least 6 characters long
+    submit_button: Sign Up
+    title: Sign Up
