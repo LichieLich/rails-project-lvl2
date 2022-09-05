@@ -1,5 +1,5 @@
-- like = @post.post_likes.find_by(user_id: current_user.id)
-- if like
+/ - like = @post.post_likes.find_by(user_id: current_user.id)
+- if current_user && @post.post_likes.find_by(user_id: current_user.id)
   span.fw-bold = @post.post_likes.count
   = link_to post_like_path(@post.id, like.id), method: :delete do
     i.bi.bi-hand-thumbs-up-fill

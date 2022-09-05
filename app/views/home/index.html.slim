@@ -23,7 +23,7 @@
                   - array << User.find(like.user_id).email[/\w+/]
                 small = likes.join(', ')
             .d-flex.flex-sm-row
-              - if post.creator == current_user.email
+              - if current_user && post.creator == current_user.email
                 = link_to t('posts.links.edit'), edit_post_path(post), class: 'me-2'
                 = link_to t('posts.links.delete'), post_path(post), data: { confirm: t('posts.links.destroy_confirmation') }, method: :delete, class: 'text-danger'
         br

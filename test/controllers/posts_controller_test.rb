@@ -50,4 +50,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to root_path
   end
+
+  test 'should not redirect unauthrorized user for #show' do
+    sign_out users(:user_one)
+    get post_url(@post)
+    assert_response :success
+  end
+
+  test 'should redirect unauthrorized user for #new' do
+    sign_out users(:user_one)
+    get new_post_url
+    assert_response :redirect
+  end
 end

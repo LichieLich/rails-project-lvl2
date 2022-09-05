@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Posts::LikesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @post_like = find_post.post_likes.build(post_id: params[:post_id], user_id: current_user.id)
 

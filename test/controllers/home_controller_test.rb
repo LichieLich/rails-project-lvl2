@@ -9,9 +9,9 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should redirect unauthrorized user' do
+  test 'should not redirect unauthrorized user' do
     sign_out users(:user_one)
     get root_path
-    assert_response :redirect
+    assert_response :success
   end
 end
