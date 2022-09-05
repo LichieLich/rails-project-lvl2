@@ -3,7 +3,7 @@
 class Posts::CommentsController < ApplicationController
   # before_action :resource_post, only: %i[ create new ]
   before_action :set_post_comment, only: %i[new_reply]
-  
+
   def new
     @post_comment = find_post.post_comments.build
   end
