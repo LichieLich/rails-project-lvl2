@@ -3,6 +3,7 @@
     - if comment.ancestry
       .p-4
     .p-2
+      p.mb-0.fw-bold.text-secondary = "#{User.find(comment.user.id).email[/\w+/]}:"
       p.mb-0 = comment.content
       = link_to t('posts.comments.links.add_reply'), post_comment_path(@post, comment), method: :get, class: 'me-2 text-secondary'
       br

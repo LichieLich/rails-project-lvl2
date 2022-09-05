@@ -7,10 +7,9 @@
 first_comment:
   post: one
   content: first_comment
+  user: user_one
 
-# column: value
-#
 two:
   post: one
   content: second_comment
-# column: value
+  user: user_two

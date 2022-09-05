@@ -29,22 +29,23 @@ end
 end
 
 # Comments
+users = User.all
 posts = Post.all
 10.times do
   post = posts.sample
-  post.post_comments.build(content: Faker::ChuckNorris.fact).save
+  post.post_comments.build(content: Faker::ChuckNorris.fact, user_id: users.sample.id).save
 end
 
 # Comments' replys
 25.times do
   comments = PostComment.all
   ancestor = comments.sample
-  ancestor.children.create(content: Faker::ChuckNorris.fact, post_id: ancestor.post_id)
+  ancestor.children.create(content: Faker::ChuckNorris.fact, post_id: ancestor.post_id, user_id: users.sample.id)
 end
 
 # Likes
 posts = Post.all
-users = User.all
+# users = User.all
 posts.each do |post|
   users.each do |user|
     post.post_likes.build(post_id: post.id, user_id: user.id).save if rand(100) > 75
