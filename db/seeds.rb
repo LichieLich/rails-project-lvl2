@@ -33,7 +33,7 @@ users = User.all
 posts = Post.all
 10.times do
   post = posts.sample
-  post.post_comments.build(content: Faker::ChuckNorris.fact, user_id: users.sample.id).save
+  post.comments.build(content: Faker::ChuckNorris.fact, user_id: users.sample.id).save
 end
 
 # Comments' replys
@@ -45,9 +45,8 @@ end
 
 # Likes
 posts = Post.all
-# users = User.all
 posts.each do |post|
   users.each do |user|
-    post.post_likes.build(post_id: post.id, user_id: user.id).save if rand(100) > 75
+    post.likes.build(post_id: post.id, user_id: user.id).save if rand(100) > 75
   end
 end

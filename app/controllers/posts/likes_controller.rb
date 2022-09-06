@@ -4,7 +4,7 @@ class Posts::LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post_like = find_post.post_likes.build(post_id: params[:post_id], user_id: current_user.id)
+    @post_like = find_post.likes.build(post_id: params[:post_id], user_id: current_user.id)
 
     if @post_like.save
       # Just refresh current page or redirect to to root if refferer is unknown
@@ -15,7 +15,7 @@ class Posts::LikesController < ApplicationController
   end
 
   def destroy
-    @post_like = find_post.post_likes.find_by(user: current_user)
+    @post_like = find_post.likes.find_by(user: current_user)
     @post_like.destroy
 
     respond_to do |format|

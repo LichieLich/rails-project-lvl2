@@ -6,11 +6,10 @@ class Posts::CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @post_comment = find_post.post_comments.build
+    @post_comment = find_post.comments.build
   end
 
   def new_reply
-    set_post_comment
     @post_comment = @post_comment.children.new
     @post_comment.post_id = params[:post_id]
   end
@@ -18,7 +17,7 @@ class Posts::CommentsController < ApplicationController
   def create
     params = post_comment_params
     params[:user_id] = current_user.id
-    @post_comment = find_post.post_comments.build(params)
+    @post_comment = find_post.comments.build(params)
 
     if @post_comment.save
       redirect_to post_url(find_post), notice: t('.success')

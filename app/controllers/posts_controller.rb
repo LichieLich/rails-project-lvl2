@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post_comments = @post.post_comments
+    @comments = @post.comments
     users_liked = PostLike.where(post_id: @post.id).each_with_object([]) do |like, array|
       array << User.find(like.user_id).email[/\w+/]
     end

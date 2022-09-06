@@ -7,7 +7,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
     @post = posts(:one)
     @user = users(:user_one)
     sign_in @user
-    @like = @post.post_likes.build(post_id: @post.id, user_id: @user.id)
+    @like = @post.likes.build(post_id: @post.id, user_id: @user.id)
     @like.save
   end
 

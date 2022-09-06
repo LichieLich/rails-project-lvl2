@@ -16,10 +16,10 @@
             == render partial: 'posts/likes/like'
             .text-muted
               small = t('posts.params.liked')
-              - if post.post_likes.empty?
+              - if post.likes.empty?
                 small = t('posts.params.no_likes')
               - else
-                - likes = post.post_likes.each_with_object([]) do |like, array|
+                - likes = post.likes.each_with_object([]) do |like, array|
                   - array << User.find(like.user_id).email[/\w+/]
                 small = likes.join(', ')
             .d-flex.flex-sm-row
