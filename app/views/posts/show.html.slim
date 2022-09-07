@@ -14,7 +14,7 @@
           br
           span = t('posts.params.comments')
           br
-          - @post_comments&.each do |comment|
+          - @comments&.each do |comment|
             - unless comment.ancestry
               .border.border-dark.rounded.mt-2
                 == render partial: 'posts/comments/comment', object: comment

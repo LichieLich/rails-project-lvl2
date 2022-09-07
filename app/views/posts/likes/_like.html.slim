@@ -1,9 +1,10 @@
-/ - like = @post.likes.find_by(user_id: current_user.id)
-- if current_user && @post.likes.find_by(user_id: current_user.id)
-  span.fw-bold = @post.likes.count
-  = link_to post_like_path(@post.id, like.id), method: :delete do
-    i.bi.bi-hand-thumbs-up-fill
-- else
-  span = @post.likes.count
-  = link_to post_likes_path(@post), method: :post do
-    i.bi.bi-hand-thumbs-up
+- if current_user
+  - like = @post.likes.find_by(user_id: current_user.id || nil)
+  - if like
+    span.fw-bold = @post.likes.count
+    = link_to post_like_path(@post.id, like.id), method: :delete do
+      i.bi.bi-hand-thumbs-up-fill
+  - else
+    span = @post.likes.count
+    = link_to post_likes_path(@post), method: :post do
+      i.bi.bi-hand-thumbs-up
