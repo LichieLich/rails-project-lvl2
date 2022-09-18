@@ -15,8 +15,7 @@ class Posts::LikesController < ApplicationController
   end
 
   def destroy
-    @post_like = find_post.likes.find_by(user: current_user)
-    @post_like.destroy
+    @post_like = find_post.likes.find_by(user: current_user)&.destroy
 
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }
