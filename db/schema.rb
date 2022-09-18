@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_18_184427) do
+ActiveRecord::Schema.define(version: 2022_09_18_200848) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 2022_09_18_184427) do
     t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.integer "creator", null: false
     t.integer "likes_count"
     t.index ["category_id"], name: "index_posts_on_category_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["creator"], name: "index_posts_on_creator"
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,8 +8,8 @@ class Post < ApplicationRecord
 
   validates :title, :body, presence: true
 
-  def creator
-    User.find(user_id)
+  def user
+    User.find(creator)
   end
 
   def like_by_user(user)
