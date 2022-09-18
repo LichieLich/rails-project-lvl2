@@ -8,9 +8,7 @@
           - if @post.body
             p.bg-light.mb-2.mt-2 = @post.body
           == render partial: 'posts/likes/like'
-          br
           small.text-muted #{t('posts.params.liked')} #{@likes.empty? ? t('posts.params.no_likes') : @likes}
-          br
           br
           span = t('posts.params.comments')
           br

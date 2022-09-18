@@ -1,13 +1,10 @@
 ci-setup:
-	# cp -n .env.example .env || true
 	yarn install
 	RAILS_ENV=test bundle install --without production development
 	chmod u+x bin/rails
  	bin/rails db:prepare
-	# bin/rails db:fixtures:load
 
 setup:
-	# cp -n .env.example .env || true
 	bin/setup
 	bin/rails db:fixtures:load
 	npx simple-git-hooks

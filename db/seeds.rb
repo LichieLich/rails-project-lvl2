@@ -24,7 +24,7 @@ end
 
 # Posts
 5.times do
-  body = Faker::Lorem.paragraph(sentence_count: rand(25)) if rand(2).positive?
+  body = Faker::Lorem.paragraph(sentence_count: rand(25))
   Post.create title: Faker::BossaNova.artist, creator: User.all.sample.email, category: Category.all.sample, body: body
 end
 
