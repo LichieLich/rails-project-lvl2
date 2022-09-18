@@ -12,14 +12,16 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create like' do
-    assert_difference('PostLike.count') do
-      post post_likes_url(@post.id), params: { post_like: { post_id: @post.id, user_id: @user.id } }
-    end
+    post post_likes_url(@post.id), params: { post_like: { post_id: @post.id, user_id: @user.id } }
+
+    created_like = PostLike.last
+    assert { created_like.post_id = @post.id }
+    assert { created_like.user = @user }
   end
 
   test 'should destroy like' do
-    assert_difference('PostLike.count', -1) do
-      delete post_like_url(@post.id, @like.id)
-    end
+    delete post_like_url(@post.id, @like.id)
+
+    refute { @post.likes.find_by(user_id: @user.id) }
   end
 end

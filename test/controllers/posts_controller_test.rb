@@ -15,9 +15,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
-    assert_difference('Post.count') do
-      post posts_url, params: { post: { body: @post.body, user_id: @user.id, title: @post.title, category_id: @post.category.id } }
-    end
+    post posts_url, params: { post: { body: @post.body, user_id: @user.id, title: @post.title, category_id: @post.category.id } }
+
+    created_post = Post.last
+    assert { created_post.body == @post.body }
+    assert { created_post.category_id == @post.category_id }
+    assert { created_post.title == @post.title }
+    assert { created_post.user == @post.user }
 
     assert_redirected_to post_url(Post.last)
   end
@@ -44,9 +48,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should destroy post' do
-    assert_difference('Post.count', -1) do
-      delete post_url(@post)
-    end
+    delete post_url(@post)
+
+    refute { Post.find_by(id: @post.id) }
 
     assert_redirected_to root_path
   end
