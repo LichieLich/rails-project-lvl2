@@ -4,10 +4,10 @@ one:
   title: MyString
   body: MyString
   category: one
-  creator: somebody
+  user: user_one
 
 two:
   title: Titlw
   body: BodyBody
   category: two
-  creator: somebody_else
+  user: user_two

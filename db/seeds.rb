@@ -21,15 +21,15 @@ end
   user.password_confirmation = 'valid_password'
   user.save
 end
+users = User.all
 
 # Posts
 5.times do
   body = Faker::Lorem.paragraph(sentence_count: rand(25))
-  Post.create title: Faker::BossaNova.artist, creator: User.all.sample.email, category: Category.all.sample, body: body
+  Post.create title: Faker::BossaNova.artist, user_id: users.sample.id, category: Category.all.sample, body: body
 end
 
 # Comments
-users = User.all
 posts = Post.all
 10.times do
   post = posts.sample
