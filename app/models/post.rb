@@ -11,4 +11,8 @@ class Post < ApplicationRecord
   def creator
     User.find(self.user_id)
   end
+
+  def like_by_user(user)
+    self.likes.find_by(user_id: user.id || nil)
+  end
 end

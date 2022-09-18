@@ -7,8 +7,8 @@
           p.mb-2 #{t('posts.params.author')} #{@post.creator.email[/\w+/]}
           - if @post.body
             p.bg-light.mb-2.mt-2 = @post.body
-          == render partial: 'posts/likes/like'
-          small.text-muted #{t('posts.params.liked')} #{@likes.empty? ? t('posts.params.no_likes') : @likes}
+          == render partial: 'posts/likes/like', locals: {post: @post}
+          small.text-muted #{t('posts.params.liked')} #{@users_liked.empty? ? t('posts.params.no_likes') : @users_liked}
           br
           span = t('posts.params.comments')
           br

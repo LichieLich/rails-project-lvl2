@@ -6,4 +6,14 @@ class PostComment < ApplicationRecord
   has_ancestry
 
   validates :content, presence: true
+
+  def user
+    User.find(self.user_id)
+  end
+
+  def descendant_comments
+    self.child_ids.each_with_object([]) do |id, arr|
+      arr << PostComment.find(id)
+    end
+  end
 end

@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @creator = User.find(@post.user_id)
-    @likes = @post.likes.each_with_object([]) { |like, arr| arr << like.user.email[/\w+/] }.join(', ')
+    @users_liked = @post.likes.each_with_object([]) { |like, arr| arr << like.user.email[/\w+/] }.join(', ')
   end
 
   # GET /posts/new
