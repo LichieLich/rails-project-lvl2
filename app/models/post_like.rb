@@ -5,6 +5,6 @@ class PostLike < ApplicationRecord
   belongs_to :user
 
   def user
-    User.find(self.user_id)
+    User.find(user_id)
   end
 end

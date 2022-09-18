@@ -9,10 +9,10 @@ class Post < ApplicationRecord
   validates :title, :body, presence: true
 
   def creator
-    User.find(self.user_id)
+    User.find(user_id)
   end
 
   def like_by_user(user)
-    self.likes.find_by(user_id: user.id || nil)
+    likes.find_by(user_id: user.id || nil)
   end
 end

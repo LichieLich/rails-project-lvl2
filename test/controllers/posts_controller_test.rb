@@ -50,7 +50,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should destroy post' do
     delete post_url(@post)
 
-    refute { Post.find_by(id: @post.id) }
+    assert_not { Post.find_by(id: @post.id) }
 
     assert_redirected_to root_path
   end

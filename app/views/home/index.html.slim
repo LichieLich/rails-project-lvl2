@@ -12,10 +12,10 @@
             p.mb-2 #{t('posts.params.author')} #{post.creator.email[/\w+/]}
             - if post.body
               p.bg-light.mb-2 = post.body
-            == render partial: 'posts/likes/like', locals: {post: post}
+            == render partial: 'posts/likes/like', locals: { post: post }
             .text-muted
               small = t('posts.params.liked')
-              - if post.likes.size == 0
+              - if post.likes.size.zero?
                 small = t('posts.params.no_likes')
               - else
                 small = post.likes.each_with_object([]) { |like, array| array << like.user.email[/\w+/] }.join(', ')

@@ -10,10 +10,9 @@ class Posts::CommentsController < ApplicationController
   end
 
   def new_reply
-    prepend_view_path "app/views/posts/comments/new.html.slim"
     @post_comment = @post_comment.children.new
     @post_comment.post_id = params[:post_id]
-    
+
     render 'new'
   end
 
