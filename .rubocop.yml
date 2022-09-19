@@ -37,6 +37,3 @@ Metrics/BlockLength:
 
 Style/AsciiComments:
   Enabled: false
-
-Rails/RefuteMethods:
-  EnforcedStyle: refute

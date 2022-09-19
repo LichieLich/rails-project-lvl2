@@ -21,8 +21,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy like' do
     delete post_like_url(@post.id, @like.id)
-    # binding.irb
 
-    refute { @post.likes.find_by(user_id: @user.id) }
+    assert { @post.likes.find_by(user_id: @user.id).nil? }
   end
 end
