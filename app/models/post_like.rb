@@ -3,8 +3,4 @@
 class PostLike < ApplicationRecord
   belongs_to :post, counter_cache: :likes_count
   belongs_to :user
-
-  def user
-    User.find(user_id)
-  end
 end

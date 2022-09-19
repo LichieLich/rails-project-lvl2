@@ -26,7 +26,7 @@ users = User.all
 # Posts
 5.times do
   body = Faker::Lorem.paragraph(sentence_count: rand(25))
-  Post.create title: Faker::BossaNova.artist, user_id: users.sample.id, category: Category.all.sample, body: body
+  Post.create title: Faker::BossaNova.artist, creator_id: users.sample.id, category: Category.all.sample, body: body
 end
 
 # Comments
@@ -44,7 +44,6 @@ end
 end
 
 # Likes
-posts = Post.all
 posts.each do |post|
   users.each do |user|
     post.likes.build(post_id: post.id, user_id: user.id).save if rand(100) > 75

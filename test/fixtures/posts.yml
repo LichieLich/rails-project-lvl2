@@ -4,10 +4,9 @@ one:
   title: MyString
   body: MyString
   category: one
-  creator: <%= ActiveRecord::FixtureSet.identify(:user_one) %>
-
+  creator: user_one
 two:
   title: Titlw
   body: BodyBody
   category: two
-  creator: <%= ActiveRecord::FixtureSet.identify(:user_two) %>
+  creator: user_two

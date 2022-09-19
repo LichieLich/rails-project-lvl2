@@ -7,10 +7,6 @@ class PostComment < ApplicationRecord
 
   validates :content, presence: true
 
-  def user
-    User.find(user_id)
-  end
-
   def descendant_comments
     child_ids.each_with_object([]) do |id, arr|
       arr << PostComment.find(id)

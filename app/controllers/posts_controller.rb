@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @comments = @post.comments
-    @creator = User.find(@post.creator)
+    @creator = @post.creator
     @users_liked = @post.likes.each_with_object([]) { |like, arr| arr << like.user.email[/\w+/] }.join(', ')
   end
 
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    @post.creator = current_user.id
+    @post.creator_id = current_user.id
 
     if @post.save
       redirect_to post_url(@post), notice: t('.success')
@@ -55,6 +55,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :creator, :category_id)
+    params.require(:post).permit(:title, :body, :creator_id, :category_id)
   end
 end

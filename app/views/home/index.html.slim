@@ -9,7 +9,7 @@
             h4
               = link_to post.title, post_path(post), class: 'link-dark text-decoration-none me-2'
             p.fw-bold.mb-1 #{t('posts.params.category')} #{post.category.name}
-            p.mb-2 #{t('posts.params.author')} #{post.user.email[/\w+/]}
+            p.mb-2 #{t('posts.params.author')} #{post.creator.email[/\w+/]}
             - if post.body
               p.bg-light.mb-2 = post.body
             == render partial: 'posts/likes/like', locals: { post: post }
@@ -20,7 +20,7 @@
               - else
                 small = post.likes.each_with_object([]) { |like, array| array << like.user.email[/\w+/] }.join(', ')
             .d-flex.flex-sm-row
-              - if current_user && post.user == current_user
+              - if current_user && post.creator == current_user
                 = link_to t('posts.links.edit'), edit_post_path(post), class: 'me-2'
                 = link_to t('posts.links.delete'), post_path(post), data: { confirm: t('posts.links.destroy_confirmation') }, method: :delete, class: 'text-danger'
         br
