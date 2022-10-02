@@ -10,8 +10,7 @@
               = link_to post.title, post_path(post), class: 'link-dark text-decoration-none me-2'
             p.fw-bold.mb-1 #{t('posts.params.category')} #{post.category.name}
             p.mb-2 #{t('posts.params.author')} #{post.creator.email[/\w+/]}
-            - if post.body
-              p.bg-light.mb-2 = post.body
+            p.bg-light.mb-2 = post.body
             == render partial: 'posts/likes/like', locals: { post: post }
             .text-muted
               small = t('posts.params.liked')
@@ -19,6 +18,8 @@
                 small = t('posts.params.no_likes')
               - else
                 small = post.likes.each_with_object([]) { |like, array| array << like.user.email[/\w+/] }.join(', ')
+              br
+              small = t('posts.params.created', count: post.hours_lives)
             .d-flex.flex-sm-row
               - if current_user && post.creator == current_user
                 = link_to t('posts.links.edit'), edit_post_path(post), class: 'me-2'

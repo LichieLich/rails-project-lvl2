@@ -10,17 +10,25 @@ en:
     params:
       author: 'By:'
       category: 'Category:'
+      created:
+        zero: 'Created less than an hour ago'
+        one: 'Created %{count} hour ago'
+        other: "Created %{count} hours ago"
       liked: 'Liked: '
       no_likes: No one =(
       comments: 'Comments:'
     titles:
       edit_page: Editing post
       new: New post
+    edit:
+      forbidden: You can't modify others' posts
     destroy:
+      forbidden: You can't delete others' posts
       success: Post was successfully deleted
     create:
       success: Post was successfully created
     update:
+      forbidden: You can't modify others' posts
       success: Post was successfully updated
 
     comments:

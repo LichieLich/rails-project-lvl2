@@ -1,7 +1,7 @@
 .container
   h1 = t('posts.titles.edit')
 
-  == render 'form'
+  == render partial: 'form', locals: { post: @post }
 
   => link_to t('posts.links.show'), @post, class: 'm-2'
   '|

@@ -15,7 +15,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
-    post posts_url, params: { post: { body: @post.body, creator_id: @user.id, title: @post.title, category_id: @post.category.id } }
+    post posts_url, params: { post: { body: @post.body, title: @post.title, category_id: @post.category.id } }
 
     created_post = Post.last
     assert { created_post.body == @post.body }
@@ -38,13 +38,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update post' do
     new_post = posts(:two)
-    patch post_url(@post), params: { post: { body: new_post.body, creator_id: new_post.creator.id, title: new_post.title, category_id: new_post.category.id } }
+
+    patch post_url(@post), params: { post: { body: new_post.body, title: new_post.title, category_id: new_post.category.id } }
     assert_redirected_to post_url(@post)
 
     @post = Post.find(@post.id)
     assert { @post.body == new_post.body }
-    assert { @post.creator == new_post.creator }
     assert { @post.title == new_post.title }
+    assert { @post.category == new_post.category }
   end
 
   test 'should destroy post' do

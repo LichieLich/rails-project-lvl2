@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :post_likes, dependent: :destroy
-  has_many :post_comments, dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :post_likes, class_name: 'PostLike', dependent: :destroy
+  has_many :post_comments, class_name: 'PostComment', dependent: :destroy
+  has_many :posts, class_name: 'Post', dependent: :destroy
 end

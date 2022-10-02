@@ -2,7 +2,7 @@
   = content_for :content do
     = t('posts.comments.reply_title')
 
-  == render 'form'
+  == render 'form', locals: { post: @post }
   hr
   .d-flex
     = link_to t('posts.comments.links.back'), :back, class: 'btn btn-outline-primary'

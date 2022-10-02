@@ -2,13 +2,14 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[show]
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   # GET /posts/1 or /posts/1.json
   def show
+    # @post = Post.find(params[:id])
     @comments = @post.comments
-    @creator = @post.creator
-    @users_liked = @post.likes.each_with_object([]) { |like, arr| arr << like.user.email[/\w+/] }.join(', ')
+    @new_comment = @post.comments.build
+    @users_liked = @post.likes.includes(:user).map { |like| like.user.email[/\w+/] }.join(', ')
   end
 
   # GET /posts/new
@@ -17,7 +18,9 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit; end
+  def edit
+    redirect_to root_path, notice: t('.forbidden') unless @post.creator == current_user
+  end
 
   # POST /posts or /posts.json
   def create
@@ -27,23 +30,31 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_url(@post), notice: t('.success')
     else
-      render :new, status: :unprocessable_entity
+      render :new, locals: { post: @post }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    if @post.update(post_params)
-      redirect_to post_url(@post), notice: t('.success')
+    if @post.creator == current_user
+      if @post.update(post_params)
+        redirect_to post_url(@post), notice: t('.success')
+      else
+        render :edit, locals: { post: @post }, status: :unprocessable_entity
+      end
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to root_path, notice: t('.forbidden')
     end
   end
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy
-    redirect_to root_path, notice: t('.success')
+    if @post.creator == current_user
+      @post.destroy
+      redirect_to root_path, notice: t('.success')
+    else
+      redirect_to root_path, notice: t('.forbidden')
+    end
   end
 
   private
@@ -51,10 +62,12 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+    # post = Post.find(params[:id])
+    # @post = post.creator == current_user ? post : nil
   end
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :creator_id, :category_id)
+    params.require(:post).permit(:title, :body, :category_id)
   end
 end

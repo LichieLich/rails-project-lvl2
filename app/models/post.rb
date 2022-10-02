@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   validates :title, :body, presence: true
 
   def like_by_user(user)
-    likes.find_by(user_id: user.id || nil)
+    likes.find_by(user_id: user.id)
+  end
+
+  def hours_lives
+    ((Time.zone.now - created_at.to_time) / 3600).to_i
   end
 end

@@ -15,9 +15,7 @@
           - @comments&.each do |comment|
             - unless comment.ancestry
               .border.border-dark.rounded.mt-2
-                == render partial: 'posts/comments/comment', object: comment
-              br
-          = link_to t('posts.comments.links.new_comment'), new_post_comment_path(@post), class: 'btn btn-primary mb-2'
+                == render partial: 'posts/comments/comment', locals: { comment: comment, post: @post }
           .d-flex.flex-sm-row
             - if current_user && @post.creator == current_user
               = link_to t('posts.links.edit'), edit_post_path(@post), class: 'me-2'
