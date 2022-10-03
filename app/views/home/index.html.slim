@@ -19,7 +19,7 @@
               - else
                 small = post.likes.each_with_object([]) { |like, array| array << like.user.email[/\w+/] }.join(', ')
               br
-              small = t('posts.params.created', count: post.hours_lives)
+              small = t('posts.params.created', created: time_ago_in_words(post.created_at))
             .d-flex.flex-sm-row
               - if current_user && post.creator == current_user
                 = link_to t('posts.links.edit'), edit_post_path(post), class: 'me-2'

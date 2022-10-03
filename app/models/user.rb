@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   has_many :post_likes, class_name: 'PostLike', dependent: :destroy
   has_many :post_comments, class_name: 'PostComment', dependent: :destroy
-  has_many :posts, class_name: 'Post', dependent: :destroy
+  has_many :posts, class_name: 'Post', foreign_key: 'creator_id', dependent: :destroy
 end

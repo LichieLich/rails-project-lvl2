@@ -6,10 +6,14 @@
       .p-2
         p.mb-0.fw-bold.text-secondary = "#{comment.user.email[/\w+/]}:"
         p.mb-0 = comment.content
-        = link_to t('posts.comments.links.add_reply'), post_comment_path(post, comment), method: :post, class: 'me-2 text-secondary'
+        / - binding.irb
+        - if new_reply && comment.id == new_reply.parent.id
+          == render partial: 'posts/comments/form', locals: { new_comment: new_reply, post: post }
+        - else
+          = link_to t('posts.comments.links.add_reply'), post_comment_path(post, comment), method: :post, class: 'me-2 text-secondary'
         br
         - if comment.has_children?
           - comment.descendant_comments.each do |comment|
-            == render partial: 'posts/comments/comment', locals: { comment: comment, post: post }
+            == render partial: 'posts/comments/comment', locals: { comment: comment, post: post, new_reply: @new_reply }
     - else
       == render partial: 'posts/comments/form', locals: { new_comment: comment, post: post }

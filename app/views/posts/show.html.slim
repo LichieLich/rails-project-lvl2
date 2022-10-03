@@ -8,14 +8,17 @@
           - if @post.body
             p.bg-light.mb-2.mt-2 = @post.body
           == render partial: 'posts/likes/like', locals: { post: @post }
-          small.text-muted #{t('posts.params.liked')} #{@users_liked.empty? ? t('posts.params.no_likes') : @users_liked}
-          br
+          .text-muted
+            small #{t('posts.params.liked')} #{@users_liked.empty? ? t('posts.params.no_likes') : @users_liked}
+            br
+            small = t('posts.params.created', created: time_ago_in_words(@post.created_at))
+            br
           span = t('posts.params.comments')
           br
           - @comments&.each do |comment|
             - unless comment.ancestry
               .border.border-dark.rounded.mt-2
-                == render partial: 'posts/comments/comment', locals: { comment: comment, post: @post }
+                == render partial: 'posts/comments/comment', locals: { comment: comment, post: @post, new_reply: @new_reply }
           .d-flex.flex-sm-row
             - if current_user && @post.creator == current_user
               = link_to t('posts.links.edit'), edit_post_path(@post), class: 'me-2'

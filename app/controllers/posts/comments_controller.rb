@@ -2,18 +2,21 @@
 
 class Posts::CommentsController < ApplicationController
   # before_action :resource_post, only: %i[ create new ]
-  before_action :set_post
   before_action :authenticate_user!
 
   def new_reply
-    @post_comment = PostComment.find(params[:id])
-    @post_comment = @post_comment.children.new
-    @post_comment.id = params[:id]
+    @new_reply = PostComment.find(params[:id]).children.new
+    @new_reply.id = params[:id]
 
-    render :_form, locals: { new_comment: @post_comment }
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
+    @users_liked = @post.likes.includes(:user).map { |like| like.user.email[/\w+/] }.join(', ')
+
+    render 'posts/show'
   end
 
   def create
+    @post = Post.find(params[:post_id])
     params = post_comment_params
     params[:user_id] = current_user.id
     @post_comment = @post.comments.build(params)
@@ -21,7 +24,7 @@ class Posts::CommentsController < ApplicationController
     if @post_comment.save
       redirect_to post_url(@post), notice: t('.success')
     else
-      render :new, locals: { post: @post }, status: :unprocessable_entity
+      render 'posts/show', status: :unprocessable_entity
     end
   end
 
@@ -30,9 +33,5 @@ class Posts::CommentsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def post_comment_params
     params.require(:post_comment).permit(:content, :id, :ancestry)
-  end
-
-  def set_post
-    @post = Post.find(params[:post_id])
   end
 end
