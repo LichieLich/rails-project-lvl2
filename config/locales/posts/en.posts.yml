@@ -40,3 +40,4 @@ en:
         new_comment: Leave a comment!
       create:
         success: Comment was created.
+        failure: Something was wrong...
