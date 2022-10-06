@@ -1,19 +1,9 @@
-.container
-  .d-flex.flex-row
-    - if comment.id
-      - if comment.ancestry
-        .p-4
-      .p-2
-        p.mb-0.fw-bold.text-secondary = "#{comment.user.email[/\w+/]}:"
-        p.mb-0 = comment.content
-        / - binding.irb
-        - if new_reply && comment.id == new_reply.parent.id
-          == render partial: 'posts/comments/form', locals: { new_comment: new_reply, post: post }
-        - else
-          = link_to t('posts.comments.links.add_reply'), post_comment_path(post, comment), method: :post, class: 'me-2 text-secondary'
-        br
-        - if comment.has_children?
-          - comment.descendant_comments.each do |comment|
-            == render partial: 'posts/comments/comment', locals: { comment: comment, post: post, new_reply: @new_reply }
-    - else
-      == render partial: 'posts/comments/form', locals: { new_comment: comment, post: post }
+.p-2
+  p.mb-0.fw-bold.text-secondary = "#{comment.user.email[/\w+/]}:"
+  p.mb-0 = comment.content
+  a[class="small text-muted" data-bs-toggle="collapse" href="#new_post_comment-#{comment.id}"] = t('posts.comments.links.add_reply')
+  div[class="collapse" data-bs-target="#new_post_comment-#{comment.id}" id="new_post_comment-#{comment.id}"]
+    == render partial: 'posts/comments/form', locals: { new_comment: new_comment, post: post, comment: comment }
+  - if comment.has_children?
+    - comment.descendant_comments.each do |comment|
+      == render partial: 'posts/comments/comment', locals: { comment: comment, post: post, new_comment: new_comment }

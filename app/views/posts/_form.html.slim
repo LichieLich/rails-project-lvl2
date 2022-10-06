@@ -1,11 +1,5 @@
 .container
   = simple_form_for post do |f|
-    - if post.errors.any?
-      #error_explanation
-        h2 = t('simple_form.errors.saving_error', errors: pluralize(post.errors.count, 'error'))
-        ul
-          - post.errors.full_messages.each do |message|
-            li = message
     = f.input :title
     = f.association :category, as: :select, prompt: t('simple_form.prompts.posts.select_category')
     = f.input :body, as: :text

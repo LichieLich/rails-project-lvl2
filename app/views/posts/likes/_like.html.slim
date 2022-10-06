@@ -1,9 +1,8 @@
-- if current_user
-  - if post.like_by_user(current_user)
-    span.fw-bold = post.likes.size
-    = link_to post_like_path(post.id, post.like_by_user(current_user)), method: :delete do
-      i.bi.bi-hand-thumbs-up-fill
-  - else
-    span = post.likes.size
-    = link_to post_likes_path(post), method: :post do
-      i.bi.bi-hand-thumbs-up
+- if current_user && like_by_user
+  span.fw-bold = post.likes.size
+  = link_to post_like_path(post.id, like_by_user), method: :delete do
+    i.bi.bi-hand-thumbs-up-fill
+- else
+  span = post.likes.size
+  = link_to post_likes_path(post), method: :post do
+    i.bi.bi-hand-thumbs-up

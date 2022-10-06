@@ -11,7 +11,7 @@
             p.fw-bold.mb-1 #{t('posts.params.category')} #{post.category.name}
             p.mb-2 #{t('posts.params.author')} #{post.creator.email[/\w+/]}
             p.bg-light.mb-2 = post.body
-            == render partial: 'posts/likes/like', locals: { post: post }
+            == render partial: 'posts/likes/like', locals: { post: post, like_by_user: post.like_by_user(current_user) }
             .text-muted
               small = t('posts.params.liked')
               - if post.likes.size.zero?

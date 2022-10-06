@@ -29,12 +29,10 @@ en:
       success: Post was successfully updated
 
     comments:
-      comment_title: New Reply
-      reply_title: New Reply
       buttons:
         submit: Send comment
       links:
-        add_reply: Add reply
+        add_reply: Reply
         back: Back
         destroy_confirmation: Are you sure?
         new_comment: Leave a comment!

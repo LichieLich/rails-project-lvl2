@@ -7,6 +7,7 @@
     ul.nav.nav-pills
       nav_menu_item = link_to t('navigation.links.home'), root_path, class: 'nav-link'
       - if user_signed_in?
+        nav_menu_item = link_to t('posts.links.new_post'), new_post_path, class: 'nav-link'
         nav_menu_item = link_to t('navigation.links.log_out'), destroy_user_session_path, method: :delete, class: 'nav-link'
       -else
         nav_menu_item = link_to t('navigation.links.log_in'), new_user_session_path, class: 'nav-link'

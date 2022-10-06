@@ -7,6 +7,6 @@
           - new_comment.errors.full_messages.each do |message|
             li = message
     = f.input :content, as: :text
-    - if new_comment.ancestry
-      = f.input :ancestry, as: :hidden, input_html: { value: new_comment.ancestry }
+    - if comment
+      = f.input :parent_id, as: :hidden, input_html: { value: comment.id }
     = f.button :submit, t('posts.comments.buttons.submit'), class: 'btn btn-primary mt-2'
