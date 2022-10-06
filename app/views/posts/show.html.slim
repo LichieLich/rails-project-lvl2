@@ -17,7 +17,7 @@
           .border.border-dark.rounded.mt-2
             == render partial: 'posts/comments/form', locals: { new_comment: @new_comment, post: @post, comment: nil }
           - @comments&.each do |comment|
-            - if comment.id && comment.ancestry.nil
+            - if comment.id && comment.ancestry.nil?
               .border.border-dark.rounded.mt-2
                 == render partial: 'posts/comments/comment', locals: { tree: comment.subtree.arrange, post: @post, new_comment: @new_comment }
           .d-flex.flex-sm-row
