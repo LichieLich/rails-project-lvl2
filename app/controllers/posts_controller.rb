@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = current_user.posts.find_by!(id: params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   # POST /posts or /posts.json
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    @post = current_user.posts.find_by!(id: params[:id])
+    @post = current_user.posts.find(params[:id])
 
     if @post.update(post_params)
       redirect_to post_url(@post), notice: t('.success')
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
-    @post = current_user.posts.find_by!(id: params[:id])
+    @post = current_user.posts.find(params[:id])
 
     @post.destroy
     redirect_to root_path, notice: t('.success')

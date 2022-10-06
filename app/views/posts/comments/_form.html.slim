@@ -1,11 +1,5 @@
 .container
   = simple_form_for new_comment, url: post_comments_path(post.id), method: :post do |f|
-    - if new_comment.errors.any?
-      #error_explanation
-        h2 = t('simple_form.errors.saving_error', errors: pluralize(new_comment.errors.count, 'error'))
-        ul
-          - new_comment.errors.full_messages.each do |message|
-            li = message
     = f.input :content, as: :text
     - if comment
       = f.input :parent_id, as: :hidden, input_html: { value: comment.id }

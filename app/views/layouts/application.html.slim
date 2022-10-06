@@ -8,8 +8,8 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    = render 'layouts/nav'
     .container
       = flash[:notice]
       = flash[:alert]
-    = render 'layouts/nav'
     = yield

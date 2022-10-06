@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
-class Posts::CommentsController < ApplicationController
-  # before_action :resource_post, only: %i[ create new ]
+class Posts::CommentsController < Posts::ApplicationController
   before_action :authenticate_user!
 
   def create
-    @post = Post.find(params[:post_id])
+    resource_post
 
-    @post_comment = @post.comments.build(post_comment_params)
+    @post_comment = @resource_post.comments.build(post_comment_params)
     @post_comment.user_id = current_user.id
     @post_comment.ancestry = params[:parent_id] if params[:parent_id]
 
     if @post_comment.save
-      redirect_to post_url(@post), notice: t('.success')
+      redirect_to post_url(@resource_post), notice: t('.success')
     else
-      # render 'posts/show', status: :unprocessable_entity
-      redirect_to post_url(@post), notice: t('.failure')
+      redirect_to post_url(@resource_post), notice: t('.failure')
     end
   end
 

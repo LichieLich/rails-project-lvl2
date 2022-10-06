@@ -9,6 +9,8 @@ class Post < ApplicationRecord
   validates :title, :body, presence: true
 
   def like_by_user(user)
+    return nil unless user
+
     likes.find_by(user_id: user.id)
   end
 end

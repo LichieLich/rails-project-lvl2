@@ -4,9 +4,9 @@ one:
   title: MyString
   body: MyString
   category: one
-  creator: user_one
+  creator: one
 two:
   title: Titlw
   body: BodyBody
   category: two
-  creator: user_two
+  creator: two
