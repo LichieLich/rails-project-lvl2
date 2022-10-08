@@ -12,8 +12,7 @@ html
     .container
       .my-4
         - if flash[:notice]
-          div.alert.alert-info = flash[:notice]
-        - if flash[:alert]
-          - flash[:alert].each do |msg|
-            div.alert.alert-danger = msg
+          .alert.alert-info = flash[:notice]
+        - flash[:alert]&.each do |msg|
+          .alert.alert-danger = msg
     = yield

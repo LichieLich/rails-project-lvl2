@@ -4,17 +4,13 @@ class Posts::CommentsController < Posts::ApplicationController
   before_action :authenticate_user!
 
   def create
-    resource_post
-
-    @post_comment = @resource_post.comments.build(post_comment_params)
+    @post_comment = resource_post.comments.build(post_comment_params)
     @post_comment.user_id = current_user.id
-    @post_comment.ancestry = params[:parent_id] if params[:parent_id]
 
     if @post_comment.save
-      redirect_to post_url(@resource_post), notice: t('.success')
+      redirect_to post_url(resource_post), notice: t('.success')
     else
-      # redirect_to post_url(@resource_post), alert: t('.failure')
-      redirect_to post_url(@resource_post), alert: @post_comment.errors.full_messages
+      redirect_to post_url(resource_post), alert: @post_comment.errors.full_messages
     end
   end
 
@@ -22,6 +18,6 @@ class Posts::CommentsController < Posts::ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_comment_params
-    params.require(:post_comment).permit(:content, :parent_id, :post_id)
+    params.require(:post_comment).permit(:content, :ancestry)
   end
 end

@@ -16,10 +16,9 @@
           br
           .border.border-dark.rounded.mt-2
             == render partial: 'posts/comments/form', locals: { new_comment: @new_comment, post: @post, comment: nil }
-          - @comments&.each do |comment|
-            - if comment.id && comment.ancestry.nil?
-              .border.border-dark.rounded.mt-2
-                == render partial: 'posts/comments/comment', locals: { tree: comment.subtree.arrange, post: @post, new_comment: @new_comment }
+          - @comments&.each do |comment, _other|
+            .border.border-dark.rounded.mt-2
+              == render partial: 'posts/comments/comment', locals: { tree: comment.subtree.arrange, post: @post, new_comment: @new_comment }
           .d-flex.flex-sm-row
             - if current_user && @post.creator == current_user
               = link_to t('posts.links.edit'), edit_post_path(@post), class: 'me-2'

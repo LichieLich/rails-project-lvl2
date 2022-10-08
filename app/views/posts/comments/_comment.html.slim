@@ -1,5 +1,5 @@
 .p-2
-  - tree.each do |comment, children|
+  - tree&.each do |comment, children|
     p.mb-0.fw-bold.text-secondary = "#{comment.user.email[/\w+/]}:"
     p.mb-0 = comment.content
     a[class="small text-muted" data-bs-toggle="collapse" href="#new_post_comment-#{comment.id}"] = t('posts.comments.links.add_reply')

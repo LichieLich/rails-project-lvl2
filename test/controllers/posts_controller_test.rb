@@ -22,14 +22,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should create post' do
     post posts_url, params: { post: @attrs }
 
-    created_post = Post.find_by!(title: @attrs[:title])
+    created_post = Post.find_by(@attrs)
+    assert { created_post }
 
-    assert { created_post.body == @attrs[:body] }
-    assert { created_post.category_id == @attrs[:category_id] }
-    assert { created_post.title == @attrs[:title] }
-    assert { created_post.creator == @user }
-
-    assert_redirected_to post_url(Post.last)
+    assert_redirected_to post_url(created_post)
   end
 
   test 'should show post' do
@@ -46,11 +42,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     patch post_url(@post), params: { post: @attrs }
     assert_redirected_to post_url(@post)
 
-    @post = Post.find_by!(title: @attrs[:title])
+    updated_post = Post.find_by(@attrs)
 
-    assert { @post.body == @attrs[:body] }
-    assert { @post.title == @attrs[:title] }
-    assert { @post.category_id == @attrs[:category_id] }
+    assert { @post.id == updated_post.id }
   end
 
   test 'should destroy post' do

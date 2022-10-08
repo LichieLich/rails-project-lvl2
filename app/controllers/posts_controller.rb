@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments
+    @comments = @post.comments.includes(:user).arrange
+    # binding.irb
     @new_comment = @post.comments.build
     @users_liked = @post.likes.includes(:user).map { |like| like.user.email[/\w+/] }.join(', ')
     @like_by_user = @post.like_by_user(current_user)

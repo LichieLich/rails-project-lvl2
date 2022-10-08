@@ -4,7 +4,7 @@ require 'test_helper'
 
 class LikesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @liked_post = posts(:two)
+    @liked_post = posts(:one)
     @post = posts(:two)
     @user = users(:one)
     @like = post_likes(:one)
@@ -14,9 +14,8 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'should create like' do
     post post_likes_url(@post.id)
 
-    created_like = PostLike.find_by!(post_id: @post.id)
-    assert { created_like.post_id = @post.id }
-    assert { created_like.user = @user }
+    created_like = PostLike.find_by(post_id: @post.id, user_id: @user.id)
+    assert { created_like }
   end
 
   test 'should destroy like' do
