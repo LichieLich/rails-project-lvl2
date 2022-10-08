@@ -10,6 +10,10 @@ html
   body
     = render 'layouts/nav'
     .container
-      = flash[:notice]
-      = flash[:alert]
+      .my-4
+        - if flash[:notice]
+          div.alert.alert-info = flash[:notice]
+        - if flash[:alert]
+          - flash[:alert].each do |msg|
+            div.alert.alert-danger = msg
     = yield

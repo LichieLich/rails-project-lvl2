@@ -6,17 +6,17 @@
       .d-flex.flex-column.justify-content-center
         .mb-3
           = f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'col-3' },
-          label_html: { class: 'col-sm-1 col-form-label' }, wrapper_html: { class: 'form-control' }
+          label_html: { class: 'col-form-label' }, wrapper_html: { class: 'form-control' }
         .mb-3
           = f.input :password, required: true,
             input_html: { autocomplete: 'new-password', class: 'col-3' },
-            label_html: { class: 'col-sm-1 col-form-label' },
+            label_html: { class: 'col-form-label' },
             wrapper_html: { class: 'form-control' }, hint: t('registration.password_hint'),
             hint_html: { class: 'form-text p-2' }
         .mb-3
           = f.input :password_confirmation, required: true,
           input_html: { autocomplete: 'new-password', class: 'col-3' },
-          label_html: { class: 'col-sm-1 col-form-label' }, wrapper_html: { class: 'form-control' }
+          label_html: { class: 'col-form-label' }, wrapper_html: { class: 'form-control' }
     .form-actions.mb-3
       = f.button :submit, t('registration.submit_button'), class: 'btn btn-primary'
   = render 'devise/shared/links'

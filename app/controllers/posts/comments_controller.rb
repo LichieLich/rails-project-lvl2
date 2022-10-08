@@ -13,7 +13,8 @@ class Posts::CommentsController < Posts::ApplicationController
     if @post_comment.save
       redirect_to post_url(@resource_post), notice: t('.success')
     else
-      redirect_to post_url(@resource_post), notice: t('.failure')
+      # redirect_to post_url(@resource_post), alert: t('.failure')
+      redirect_to post_url(@resource_post), alert: @post_comment.errors.full_messages
     end
   end
 

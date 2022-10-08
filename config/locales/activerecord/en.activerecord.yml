@@ -20,3 +20,7 @@ en:
               too_long: is above 500 chars
             title:
               blank: really can't be blank
+        post_comment:
+          attributes:
+            content:
+              blank: You need to write something...
