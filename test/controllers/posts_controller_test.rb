@@ -22,7 +22,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should create post' do
     post posts_url, params: { post: @attrs }
 
-    created_post = Post.find_by(@attrs)
+    created_post = @user.posts.find_by(@attrs)
     assert { created_post }
 
     assert_redirected_to post_url(created_post)
@@ -42,7 +42,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     patch post_url(@post), params: { post: @attrs }
     assert_redirected_to post_url(@post)
 
-    updated_post = Post.find_by(@attrs)
+    updated_post = @user.posts.find_by(@attrs)
 
     assert { @post.id == updated_post.id }
   end

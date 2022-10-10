@@ -23,10 +23,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create reply' do
-    @attrs[:ancestry] = @comment.id
+    @attrs[:parent_id] = @comment.id
     post post_comments_url(@post.id), params: { post_comment: @attrs }
 
-    created_reply = @post.comments.find_by(@attrs)
+    created_reply = @post.comments.find_by(content: @attrs[:content], user_id: @user.id)
     assert { created_reply }
 
     assert_redirected_to post_url(@post)

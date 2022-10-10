@@ -13,6 +13,6 @@ html
       .my-4
         - if flash[:notice]
           .alert.alert-info = flash[:notice]
-        - flash[:alert]&.each do |msg|
-          .alert.alert-danger = msg
+        - if flash[:alert]
+          .alert.alert-danger = flash[:alert]
     = yield

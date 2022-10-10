@@ -10,7 +10,7 @@ class Posts::CommentsController < Posts::ApplicationController
     if @post_comment.save
       redirect_to post_url(resource_post), notice: t('.success')
     else
-      redirect_to post_url(resource_post), alert: @post_comment.errors.full_messages
+      redirect_to post_url(resource_post), alert: @post_comment.errors.full_messages.join(', ')
     end
   end
 
@@ -18,6 +18,6 @@ class Posts::CommentsController < Posts::ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_comment_params
-    params.require(:post_comment).permit(:content, :ancestry)
+    params.require(:post_comment).permit(:content, :parent_id)
   end
 end

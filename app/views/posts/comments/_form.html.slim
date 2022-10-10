@@ -2,5 +2,5 @@
   = simple_form_for new_comment, url: post_comments_path(post.id), method: :post do |f|
     = f.input :content, as: :text
     - if comment
-      = f.input :ancestry, as: :hidden, input_html: { value: comment.id }
+      = f.input :parent_id, as: :hidden, input_html: { value: comment.id }
     = f.button :submit, t('posts.comments.buttons.submit'), class: 'btn btn-primary mt-2'
