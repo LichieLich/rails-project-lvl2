@@ -1,9 +1,8 @@
 .p-2
-  - tree&.each do |comment, children|
-    p.mb-0.fw-bold.text-secondary = "#{comment.user.email[/\w+/]}:"
-    p.mb-0 = comment.content
-    a[class="small text-muted" data-bs-toggle="collapse" href="#new_post_comment-#{comment.id}"] = t('posts.comments.links.add_reply')
-    div[class="collapse" data-bs-target="#new_post_comment-#{comment.id}" id="new_post_comment-#{comment.id}"]
-      == render partial: 'posts/comments/form', locals: { new_comment: new_comment, post: post, comment: comment }
-    - unless children.empty?
-      == render partial: 'posts/comments/comment', locals: { tree: children, post: post, new_comment: new_comment }
+  p.mb-0.fw-bold.text-secondary = "#{comment.user.email[/\w+/]}:"
+  p.mb-0 = comment.content
+  a[class="small text-muted" data-bs-toggle="collapse" href="#new_post_comment-#{comment.id}"] = t('posts.comments.links.add_reply')
+  div[class="collapse" data-bs-target="#new_post_comment-#{comment.id}" id="new_post_comment-#{comment.id}"]
+    == render partial: 'posts/comments/form', locals: { new_comment: new_comment, post: post, comment: comment }
+  - children.each do |comment, children|
+    == render partial: 'posts/comments/comment', locals: { comment: comment, children: children, post: post, new_comment: new_comment }
